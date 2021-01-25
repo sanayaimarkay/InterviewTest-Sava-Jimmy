@@ -1,0 +1,57 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Brief</h1>
+</div>
+<div class="sava-body">
+    <p>
+        Modify this page of the application to display a list of the books present in the Books database together with their appropriate properties (title, author, ISBN and year first published).
+        The connection string for the database should have been supplied to you via e-mail. This is the Razor version of the application, the solution also contains a Razor project which you
+        can use intead if you prefer.
+        <br /><br />
+        <strong>As time allows pick one or more of these optional features to add:</strong>
+        <ol>
+            <li>Add a text search control that allows the user to filter to the list by searching for matches in properties shown in the table.</li>
+            <li>Allow user to sort list by clicking on a column.</li>
+            <li>Display the number of reviews available for a book and give the user the option to view the details of the reviews</li>
+            <li>Include the genre property in the list of books (note one book can belong to many genres).</li>
+            <li>Allow the user to add a review to an existing book (note: no need to authenticate the user, you can just get them to type in their name)</li>
+            <li>Implement a simple mechanism for displaying book front covers (for speed you can store images in a the \images folder using a naming convention but write the code so it is adaptable in the future)</li>
+        </ol>
+        <br />
+    </p>
+    <p>
+        <strong>Database Connection</strong><br />
+        The database is a MS-SQL database hosted on Microsoft Azure. You should have been supplied the appropriate connection string via e-mail. The database schema is fairly simple, containing the following tables.<br />
+        <i>Book</i> contains all the books in the system. Each book has an AuthorId which is a foreign key into the Author table.<br />
+        <i>Author</i> contains a list of book authors. In this system a book can only have one author.<br />
+        <i>Review</i> contains reviews that have been submitted by users (ratings are 1-5 star system stored as ints) each review contains the BookId foreign key that defines which book the review pertains to.<br />
+        <i>Genre</i> contains a list of book genres, these are linked to the Book table by the BookGenre table. One book can belong to more than one genre.<br />
+        <div style="color:darkred">Note: the foreign key relationships are not defined in the database schema.</div><br />
+    </p>
+    <p>
+        <strong>Guidelines</strong>
+        <br />
+        Please don't use Entity Framework (or any other ORM framework) for database access; instead use the .NET Framework System.Data.SqlClient classes. You should also avoid using any other third
+        party frameworks with the following exceptions:<br />
+        <ol>
+            <li>Bootstrap, which has already been installed</li>
+            <li>Jquery, which has already been installed</li>
+            <li>You may add the Autofac IoC container if you so wish, this is not a requirement however</li>
+            <li>If required you may add the Newtonsoft.Json nuget package</li>
+            <li>You may also use nUnit/nSubstitue if you would like to use a testing and mocking framework (again not mandatory)</li>
+        </ol>
+        <br />
+        <div class="alert alert-dark" role="alert">
+            We are looking for you to spend about 2 hours development work on your solution. You are not expected to implement the optional features but if you have time to do so, pick the feature that you
+            think allows you to show off your development skills to their best. Please do ensure that your code compiles and runs before submitting and try to write all code in a way that makes it easy to
+            maintain and extend in the future. If you get stuck getting the base solution to complile or run get in touch with paul.wolfe@@sava.co.uk
+            <br /><br />
+            In the follow up interview you will be asked how long you spent on the task and given the opportunity to describe the next steps you would have taken given more time.
+        </div>
+    </p>
+</div>

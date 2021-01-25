@@ -1,0 +1,67 @@
+﻿@model BookDetailsViewModel
+
+<div class="text-center py-5" style="background-color:red;color:white;">
+    <h1 style="font-family:'Lucida grande'">@Model.Book.Title</h1>
+    <div>by @Model.Book.Forename @Model.Book.Surname</div>
+</div>
+<div class="row py-5 mx-auto">
+    <div class="col-3"><img src="@Model.Book.ImageUrl" width="100%" /></div>
+    <div class="col-2 border" style="height:300px">
+        <div style="background-color:red;color:white;" class="my-3 p-1 w-75">Book Information</div>
+        <div>Author: @Model.Book.Forename @Model.Book.Surname</div>
+        <div>Published Date: @Model.Book.FirstPublished</div>
+        <div>ISBN: @Model.Book.ISBN</div>
+        <div>
+            Genre:
+            @foreach (var genre in Model.Genres)
+            {
+                <div class="text-center" style=" background-color:red;color:white; margin:2px 0px; padding:5px;">@genre</div>
+            }
+        </div>
+    </div>
+
+    <div class="col-6 border ml-3">
+        <div style="background-color:red;color:white;" class="my-3 p-1 w-50">Users Reviews<span class="float-right pr-3">@Model.Reviews.Count</span></div>
+        @foreach (var review in Model.Reviews)
+        {
+            var noRating = 5 - review.Rating;
+
+            <div class="my-5">
+                @if (noRating == 0)
+                {
+                    for (var i = 0; i < 5; i++)
+                    {
+                        <span style="font-size:30px">*</span>
+                    }
+
+                }
+                else
+                {
+                    for (var i = 0; i < review.Rating; i++)
+                    {
+                        <span style="font-size:30px;color:red">*</span>
+                    }
+                    for (var i = 0; i < noRating; i++)
+                    {
+                        <span style="font-size:30px">*</span>
+                    }
+                }
+                @if (!string.IsNullOrEmpty(review.Review))
+                {
+                    <div style="background-color:#294d5d" class="text-center py-5">
+                        @review.Review
+                    </div>
+                }
+
+                <div>@review.Name  on @review.ReviewedOn.ToShortDateString()</div>
+            </div>
+            <hr />
+        }
+        <a class="py-5" asp-controller="Home" asp-action="Review" asp-route-bookid="@Model.Book.Id">Write a Review</a>
+
+    </div>
+</div>
+<a asp-action="Index">Back to List</a>
+
+
+

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BookGenreViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>BOOK LIST</h2>
+
+<form class="form-inline py-5" asp-action="index">
+    <div class="form-group mb-2">
+
+        <input id="Search" name="SearchString" class="form-control " />
+    </div>
+    <div class="form-group mb-2">
+        <input type="submit" value="Search" class="btn btn-primary ml-3" />
+        <a type="button" class="btn btn-primary ml-3" asp-controller="Home" asp-action="Index">Reset</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr class="text-center">
+            
+                <th></th>
+
+                <th>
+                    <span class="mr-2">Title</span>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="title" asp-route-sort="dsc"><img src="~/images/up-chevron.png" width="15" /></a>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="title" asp-route-sort="asc"><img src="~/images/down-chevron.png" width="15" /></a>
+                </th>
+                <th>
+                    <span class="mr-2">Genres</span>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="genre" asp-route-sort="dsc"><img src="~/images/up-chevron.png" width="15" /></a>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="genre" asp-route-sort="asc"><img src="~/images/down-chevron.png" width="15" /></a>
+                </th>
+                <th>
+                    <span class="mr-2">Author</span>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="author" asp-route-sort="dsc"><img src="~/images/up-chevron.png" width="15" /></a>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="author" asp-route-sort="asc"><img src="~/images/down-chevron.png" width="15" /></a>
+                </th>
+                <th>
+                    <span class="mr-2">ISBN</span>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="isbn" asp-route-sort="dsc"><img src="~/images/up-chevron.png" width="15" /></a>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="isbn" asp-route-sort="asc"><img src="~/images/down-chevron.png" width="15" /></a>
+                </th>
+                <th>
+                    <span class="mr-2">Published</span>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="firstPublished" asp-route-sort="dsc"><img src="~/images/up-chevron.png" width="15" /></a>
+                    <a asp-controller="Home" asp-action="Index" asp-route-option="firstPublished" asp-route-sort="asc"><img src="~/images/down-chevron.png" width="15" /></a>
+                </th>
+                <th>Number of review</th>
+                <th></th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        
+            <tr class="text-center">
+
+                <td><img src="@m.book.ImageUrl" width="80" /></td>
+                <td>@m.book.Title</td>
+                <td>@m.genre</td>
+                <td>@m.book.Forename  @m.book.Surname</td>
+                <td>@m.book.ISBN</td>
+                <td>@m.book.FirstPublished</td>
+                <td>@m.reviewCount</td>
+                <td>
+                    <a asp-controller="Home"
+                       asp-action="Details"
+                       asp-route-id="@m.book.Id">Details</a>
+                </td>
+            </tr>
+        
+        }
+        </tbody>
+</table>
+
+
+
+
+
+
+
+
